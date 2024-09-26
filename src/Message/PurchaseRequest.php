@@ -36,15 +36,34 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
+     * @param $value
+     *
+     * @return \Omnipay\Converse\Message\PurchaseRequest
+     */
+    public function setLanguage($value): PurchaseRequest
+    {
+        return $this->setParameter('language', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage(): string
+    {
+        return $this->getParameter('language');
+    }
+
+    /**
      * @return array
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData(): array
     {
-        $this->validate('amount', 'returnUrl', 'currency', 'orderNumber');
+        $this->validate('amount', 'language', 'returnUrl', 'currency', 'orderNumber');
 
         return [
             'amount'      => $this->getAmount(),
+            'lang'        => $this->getLanguage(),
             'returnUrl'   => $this->getReturnUrl(),
             'currency'    => $this->getCurrency(),
             'orderNumber' => $this->getOrderNumber(),

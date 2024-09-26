@@ -72,16 +72,35 @@ class BindingPaymentRequest extends AbstractRequest
     }
 
     /**
+     * @param $value
+     *
+     * @return \Omnipay\Converse\Message\BindingPaymentRequest
+     */
+    public function setLanguage($value): BindingPaymentRequest
+    {
+        return $this->setParameter('language', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage(): string
+    {
+        return $this->getParameter('language');
+    }
+
+    /**
      * @return array
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData(): array
     {
-        $this->validate('amount', 'currency', 'returnUrl', 'bindingId', 'orderNumber');
+        $this->validate('amount', 'language', 'currency', 'returnUrl', 'bindingId', 'orderNumber');
 
         return [
             'card_binding' => $this->getCardBinding(),
             'amount'       => $this->getAmount(),
+            'lang'         => $this->getLanguage(),
             'returnUrl'    => $this->getReturnUrl(),
             'currency'     => $this->getCurrency(),
             'orderNumber'  => $this->getOrderNumber(),

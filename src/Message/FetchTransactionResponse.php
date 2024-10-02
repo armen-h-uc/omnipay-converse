@@ -79,7 +79,11 @@ class FetchTransactionResponse extends AbstractResponse
     public function getCardAuthInfo(): array
     {
         if (isset($this->data['content']['arca_last_response'])) {
-            return json_decode($this->data['content']['arca_last_response'], true);
+            $response = json_decode($this->data['content']['arca_last_response'], true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($response)) {
+                return $response;
+            }
         }
 
         return [];

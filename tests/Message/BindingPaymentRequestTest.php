@@ -21,7 +21,7 @@ class BindingPaymentRequestTest extends TestCase
             'returnUrl'    => 'http:\/\/cportal.im\/hy\/test?back=1&order_number=1',
             'currency'     => 'EUR',
             'orderNumber'  => '000866',
-            'bindingID'    => 'some-binding-id',
+            'clientId'     => 'some-client-id',
             'description'  => 'some-description',
         ]);
     }
@@ -41,7 +41,7 @@ class BindingPaymentRequestTest extends TestCase
         $this->assertEquals('http:\/\/cportal.im\/hy\/test?back=1&order_number=1', $data['returnUrl']);
         $this->assertEquals('EUR', $data['currency']);
         $this->assertEquals('000866', $data['orderNumber']);
-        $this->assertEquals('some-binding-id', $data['client_id']);
+        $this->assertEquals('some-client-id', $data['client_id']);
         $this->assertEquals('some-description', $data['description']);
     }
 }
